@@ -1,13 +1,481 @@
 body {
+  height: 100%;
+  width: 100%;
+  background-image: url("Background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.parent {
+  height: 95vh;      /* 100 vh is entire height of viewport */
+  display: grid;
+  grid-template-columns: 1fr;     /* 1fr means "take up any leftover space" */
+  grid-template-rows: auto 1fr auto;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  padding: 20px 20px 20px 20px;
+  grid-template-areas:
+        'header'
+        'main'
+        'footer';
+}
+
+.parent > header {
+  grid-area: header;
+
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr minmax(0,600px) 1fr;
+}
+
+.parent > main {        /* the home page center grid component */
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 25px auto auto 25px;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+.parent > footer {
+  grid-area: footer;
+
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr minmax(0,600px) 1fr;
+}
+
+.back_button {      /* back button in header */
+  justify-self: stretch;
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+.header_text {      /* title in header */
+  text-align: center;
+}
+.exit_button {      /* exit button in header */
+  justify-self: end;
+  grid-column-start: 3;
+  grid-column-end: 3;
+}
+
+.button_1 {         /* top-left button for the 4-button layout */
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.button_2 {         /* top-right button for the 4-button layout */
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.button_3 {         /* bottom-left button for the 4-button layout */
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.button_4 {         /* bottom-right button for the 4-button layout */
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+h1 {                /* for page headers */
+  color: #363C4C;
+  font-family: "Ink Free", serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+h2 {                /* for sub-header text */
+  color: #828692;
+  font-family: "Perpetua", serif;
+  font-style: italic;
+  text-align: center;
+}
+
+p {                 /* for regular text */
+  color: #828692;
+  font-family: "Perpetua", serif;
+}
+
+.button {          /* for all general buttons */
+  display: inline-block;
+  padding: 15px;
+  background-color: #A37F5D;
+  color: #E5E6EA;
+  font-family: "Ink Free",serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 500%;
+}
+
+.center_button {    /* center buttons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #A37F5D;
+  color: #E5E6EA;
+  font-family: "Ink Free",serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 400%;
+}
+
+
+
+/* -------------- Make a Grocery List code --------------- */
+
+.makeListMain {    /* the make a grocery list center grid component */
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 18% 18% 18% 18% 18%;
+  grid-template-columns: 12% 21% 16% 20% 16% 12%;
+}
+
+.item_header {      /* header container for makeList */
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  border-bottom: 6px solid #5B5B5B;
+}
+.quantity_header {  /* header container for makeList */
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  border-bottom: 6px solid #5B5B5B;
+}
+.item_box {         /* square container for makeList */
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  background-color: white;
+}
+
+.makelist_button_1 {        /* buttons for makeList */
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  font-size: 75%;
+}
+.makelist_button_2 {        /* buttons for makeList */
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 75%;
+}
+.makelist_button_3 {        /* buttons for makeList */
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-size: 75%;
+}
+.makelist_button_4 {        /* buttons for makeList */
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  font-size: 75%;
+}
+.makelist_button_5 {        /* buttons for makeList */
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  font-size: 75%;
+}
+
+
+
+/* -------------- Add Item code --------------- */
+
+.additemmain {
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 10% 22% 22% 4% 22% 10%;
+  grid-template-columns: 8% 20% 20% 20% 20% 8%;
+}
+
+.additem_item_desc {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.additem_qty_desc {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.additem_item_box {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.additem_quantity_box {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.additem_add_list {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  font-size: 75%;
+}
+.additem_edit_item {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  font-size: 75%;
+}
+.additem_myrecipes {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  font-size: 75%;
+}
+
+
+
+/* -------------- My Recipes code --------------- */
+
+.myrecipesmain {
+  grid-area: main;
+  overflow: auto;         /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 50px 15% 15% 15% auto;
+  grid-template-columns: auto auto auto auto auto 15% auto;
+}
+
+.search_bar {
+  display: flex;
+  padding-left: 5px;
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: white;
+  justify-content: left;
+  align-items: center;
+  font-family: "Perpetua", serif;
+  color: #828692;
+  text-align: left;
+  font-size: 200%;
+  border-color: #707070;
+  border-style: solid;
+  border-width: thin;
+}
+.square {
+  display: flex;
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 6;
+  background-color: white;
+  justify-content: center;
+  align-items: normal;
+  font-family: "Perpetua", serif;
+  color: #828692;
+  text-align: left;
+  font-size: 300%;
+  border-color: #707070;
+  border-style: inset;
+  border-width: thick;
+}
+
+.myrecipes_button_1 {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.myrecipes_button_2 {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.side_button {    /* side buttons for My Recipes page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #A37F5D;
+  color: #E5E6EA;
+  font-family: "Ink Free",serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 200%;
+  white-space: normal;
+}
+
+
+
+/* -------------- Add Recipe code --------------- */
+
+.addrecipemain {
+  grid-area: main;
+  overflow: auto; /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 50px 15% auto auto auto 50px;
+  grid-template-columns: 50px 17% 17% 20% 17% 17% 50px;
+}
+
+.recipename_box {        /* text box for user to enter recipe name */
+  display: flex;
+  padding-left: 5px;
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: white;
+  justify-content: left;
+  align-items: center;
+  font-family: "Perpetua", serif;
+  color: #828692;
+  text-align: left;
+  font-size: 200%;
+  border-color: #707070;
+  border-style: solid;
+  border-width: thin;
+}
+.recipe_box {           /* container for recipe's quantity, ingredients, & instructions input */
+  display: flex;
+  padding-left: 5px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 6;
+  background-color: white;
+  justify-content: left;
+  align-items: center;
+  font-family: "Perpetua", serif;
+  color: #828692;
+  text-align: left;
+  font-size: 200%;
+  border-color: #707070;
+  border-style: inset;
+  border-width: thick;
+}
+
+.addphotobutton {
+  grid-column-start: 6;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  font-size: 75%;
+}
+.addrecipebutton {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 6;
+  font-size: 50%;
+}
+
+
+/* -------------- What's In My Kitchen code --------------- */
+
+.whatsinkitchenmain {
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 25px auto auto 25px;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+
+
+/* -------------- My Meal Plan code --------------- */
+
+.mealplanmain {
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 25px auto auto 25px;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+
+
+/* -------------- Help code --------------- */
+
+.helpmain {
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 25px auto auto 25px;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+
+
+/* -------------- Settings code --------------- */
+
+.settingsmain {
+  grid-area: main;
+  overflow: auto;     /* makes the main element scroll, but keeps header&footer in place */
+  padding: 10px 5px 10px 5px;
+
+  display: grid;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  grid-template-rows: 25px auto auto 25px;
+  grid-template-columns: auto auto auto auto auto auto;
 }

@@ -7,6 +7,8 @@ const BrowserWindow = electron.BrowserWindow
 
 let mainWindow
 
+/* To start program, type npm start and then the Play button will work */
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -17,9 +19,9 @@ function createWindow() {
   })
 
   mainWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`,
+    isDev                                     /* if the program is opened in dev mode */
+      ? 'http://localhost:3000'                   /* this opens the program in a browser */
+      : `file://${path.join(__dirname, '../build/index.html')}`,    /* this loads the window itself */
   )
 
   mainWindow.on('closed', () => {
