@@ -23,13 +23,24 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route path="/:id" component={UserPage} />
+          {/*<Route exact path="/" component={HomePage}></Route>
+          <Route path="/:id" component={UserPage} />*/}
+
+          <Switch>
+            <Route path="/MyRecipes">
+              <MyRecipes />
+            </Route>
+            <Route path="/WhatsinmyKitchen">
+              <WhatsinmyKitchen />
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+
         </Switch>
       </Router>
-
-)
-
+  )
 }
 
 
